@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>645.6,2556</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>645.6,2656</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>UploadYearlyReport_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -55,22 +55,24 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UploadYearlyReport" sap:VirtualizedContainerService.HintSize="625.6,2496" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UploadYearlyReport" sap:VirtualizedContainerService.HintSize="625.6,2596" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="FileName" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'iexplore.exe ACME'" sap:VirtualizedContainerService.HintSize="584,2403.2" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="3b96e37140757cb0aade601d1245dfe9" Selector="&lt;html title='ACME System 1 - Reports - Upload Yearly Report' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="IE" DisplayName="Attach Browser 'iexplore.exe ACME'" sap:VirtualizedContainerService.HintSize="584,2503.2" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="3b96e37140757cb0aade601d1245dfe9" Selector="&lt;html title='ACME System 1 - Reports - Upload Yearly Report' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="550.4,2256" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="550.4,2356" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Default="[String.Format(&quot;&lt;webctrl aaname='{0}' parentid='searchForm' tag='A' /&gt;&quot;,in_Year)]" Name="YearSelector" />
             </Sequence.Variables>
@@ -79,6 +81,14 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="508.8,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[FileName]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[String.Format("Yearly-Report-{0}-{1}.xlsx",in_Year.ToString(),in_TaxiId.ToString())]</InArgument>
+              </Assign.Value>
+            </Assign>
             <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'INPUT  vendorTaxID'" EmptyField="True" sap:VirtualizedContainerService.HintSize="508.8,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[in_TaxiId]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="106c4cb3a66cec482ce7bdb2b46b926e" Selector="&lt;webctrl id='vendorTaxID' tag='INPUT' /&gt;">
@@ -169,7 +179,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="433.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[in_ReportPath]">
+                    <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into 'Edit'" sap:VirtualizedContainerService.HintSize="433.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_2" Text="[Path.Combine(in_ReportPath)]">
                       <ui:TypeInto.Target>
                         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="df4b18fe03b74b8fb1f07396e935cd6c" Selector="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;">
                           <ui:Target.TimeoutMS>
@@ -205,7 +215,7 @@
                         </ui:CursorPosition>
                       </ui:Click.CursorPosition>
                       <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="b384c1525a10f4f58410de5b41f1e9d5" Selector="&lt;webctrl id='buttonUpload' tag='BUTTON' /&gt;">
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="b384c1525a10f4f58410de5b41f1e9d5" Selector="&lt;html title='ACME System 1 - Reports - Upload Yearly Report' /&gt;&lt;webctrl id='buttonUpload' tag='BUTTON' /&gt;">
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>
@@ -215,7 +225,7 @@
                         </ui:Target>
                       </ui:Click.Target>
                     </ui:Click>
-                    <ui:OnUiElementAppear ContinueOnError="{x:Null}" FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="On Element Appear 'iexplore.exe Komunikat'" sap:VirtualizedContainerService.HintSize="433.6,826.4" sap2010:WorkflowViewState.IdRef="OnUiElementAppear_1" RepeatForever="True">
+                    <ui:OnUiElementAppear ContinueOnError="{x:Null}" FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="On Element Appear 'iexplore.exe Komunikat'" sap:VirtualizedContainerService.HintSize="433.6,826.4" sap2010:WorkflowViewState.IdRef="OnUiElementAppear_1" RepeatForever="False">
                       <ui:OnUiElementAppear.Body>
                         <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,649.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
                           <Sequence.Variables>
@@ -229,7 +239,7 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'Static'" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="GetValue_1">
                             <ui:GetValue.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e1f2630de1ee4ba2b00c7e1f37f01986" Selector="&lt;wnd app='iexplore.exe' cls='#32770' title='Komunikat ze strony sieci Web' /&gt;&lt;wnd ctrlid='65535' title='Report was uploaded - confirmation id is 9bf1cd99825add5dea2481a*' /&gt;">
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e1f2630de1ee4ba2b00c7e1f37f01986" Selector="&lt;wnd app='iexplore.exe' cls='#32770' title='Komunikat ze strony sieci Web' /&gt;&lt;wnd ctrlid='65535' title='Report was uploaded*' /&gt;">
                                 <ui:Target.TimeoutMS>
                                   <InArgument x:TypeArguments="x:Int32" />
                                 </ui:Target.TimeoutMS>
@@ -284,7 +294,7 @@
                         </Sequence>
                       </ui:OnUiElementAppear.Body>
                       <ui:OnUiElementAppear.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" InformativeScreenshot="0bac9546735f6daa8713100874b9e724">
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="b76ed0c976c55806718b674fdf99d7a0" Selector="&lt;wnd app='iexplore.exe' cls='#32770' title='Komunikat ze strony sieci Web' /&gt;&lt;ctrl name='Komunikat ze strony sieci Web' role='dialog' /&gt;">
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>
